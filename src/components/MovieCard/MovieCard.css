@@ -1,0 +1,32 @@
+.card {
+  display: grid;
+  grid-template-columns: 185px 138px 128px;
+  grid-template-rows: 108px 134px 35px;
+  gap: 0 0;
+  grid-auto-flow: row;
+  grid-template-areas:
+    'cardImage cardTitle cardTitle'
+    'cardImage cardDescription cardDescription'
+    'cardImage cardRating cardRating';
+
+  box-shadow: 5px 5px 15px 0 #d9d9d9;
+}
+
+.cardImg {
+  grid-area: cardImage;
+}
+
+.cardTitleWrap {
+  grid-area: cardTitle;
+  padding: 12px 15px 0 15px;
+}
+.cardDescription {
+  grid-area: cardDescription;
+  padding: 15px;
+}
+.cardRating {
+  grid-area: cardRating;
+  display: flex;
+  justify-content: center;
+  padding: 0 5px 10px 5px;
+}
