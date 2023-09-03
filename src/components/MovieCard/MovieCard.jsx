@@ -1,49 +1,101 @@
 import React, { Component } from 'react';
-import { Image, Typography } from 'antd';
+import { Space, Spin, Typography, Image } from 'antd';
 import { parseISO, format } from 'date-fns';
 
-import Rating from '../Rating/Rating';
-
 import './MovieCard.css';
+import AlertAlarm from '../AlertAlarm';
+import MovieGenre from '../MovieGenre';
+import Rating from '../Rating';
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 
 export default class MovieCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isError: false,
+      hasError: false,
+      loading: true,
     };
+
+    this.imgUrl = 'https://image.tmdb.org/t/p/w500';
+  }
+  dateConvert(release_date) {
+    if (release_date) {
+      try {
+        return format(parseISO(release_date), 'MMMM dd, yyyy');
+      } catch (err) {
+        this.setState({ hasError: true });
+        throw new Error(`Incorrent date format "${err}"`);
+      }
+    }
+    return null;
   }
 
-  dateConvert = (releaseDate) => {
-    try {
-      return format(parseISO(releaseDate), 'MMMM dd, yyyy');
-    } catch (err) {
-      this.state({ isError: true });
-      throw new Error(`${err}`);
-    }
-  };
+  componentDidCatch(error, info) {
+    this.setState({
+      hasError: true,
+      error,
+      errorInfo: info,
+    });
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState(() => {
+        return {
+          loading: false,
+        };
+      });
+    }, 150);
+  }
 
   render() {
+    const { id, original_title, release_date, genre_ids, overview, poster_path, vote_average, rateMovie, rating } =
+      this.props;
+
+    const { loading } = this.state;
+
+    const posterPreloader = (
+      <div className="card-preloader">
+        <Space direction="vertical">
+          <Space direction="horizontal">
+            <Spin tip="Loading" />
+          </Space>
+        </Space>
+      </div>
+    );
+
+    if (this.state.hasError) {
+      const { error, errorInfo } = this.state;
+      return <AlertAlarm error={error ? error : 'Error!'} errorInfo={errorInfo ? errorInfo : null} />;
+    }
+
+    let borderColor = 'green';
+
     return (
       <section className="card">
-        <div className="cardImg">
-          <Image src="https://upload.wikimedia.org/wikipedia/ru/d/d9/The_Covenant_%28film%2C_2023%29.jpg" />
+        <div className="cardImage">
+          {loading ? posterPreloader : <Image src={poster_path ? `${this.imgUrl}${poster_path}` : '/no-image.jpg'} />}
         </div>
-        <div className="cardTitleWrap">
-          <Title level={2} className="cardTitle" ellipsis={{ onEllipsis: false, expandable: false, rows: 2 }}>
-            Card
+        <div className="cardTitleContainer">
+          <Title level={2} className="cardTitle" ellipsis={{ ellipsis: false, expandable: false, rows: 2 }}>
+            {original_title}
+            <div className="VoteAverage" style={{ border: `2px solid ${borderColor}` }}>
+              {vote_average.toFixed(1)}
+            </div>
           </Title>
-          <Text type="secondary">{this.dateConvert('2011-02-10')}</Text>
+          <Text type="secondary">{release_date ? this.dateConvert(release_date) : null}</Text>
+          <MovieGenre id={id} genre_ids={genre_ids} className="MovieGenre" />
         </div>
         <div className="cardDescription">
-          <Paragraph className="descr" ellipsis={{ onEllipsis: false, expandable: false, rows: 5 }}>
-            description
-          </Paragraph>
+          <React.Fragment>
+            <Paragraph className="description" ellipsis={{ ellipsis: false, expandable: false, rows: 5 }}>
+              {overview}
+            </Paragraph>
+          </React.Fragment>
         </div>
         <div className="cardRating">
-          <Rating />
+          <Rating id={id} rateMovie={rateMovie} rating={rating} allowClear={false} />
         </div>
       </section>
     );

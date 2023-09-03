@@ -1,5 +1,5 @@
 class StorageService {
-  addLocalStorage = (key, data) => {
+  putLocalStorage = (key, data) => {
     try {
       localStorage.setItem(key, JSON.stringify(data));
     } catch (e) {
