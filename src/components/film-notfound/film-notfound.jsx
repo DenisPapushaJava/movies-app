@@ -1,9 +1,8 @@
 import { Alert, Space } from 'antd';
 import { Component } from 'react';
 
-export default class FilmNotFound extends Component {
+export default class FilmNotfound extends Component {
   render() {
-    console.log('i am heare');
     return (
       <Space
         direction="vertical"

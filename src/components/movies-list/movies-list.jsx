@@ -4,7 +4,7 @@ import SearchPanel from '../search-panel/search-panel';
 import ItemList from '../item-list/item-list';
 import MyPagination from '../pagination/my-pagination';
 import Offline from '../offline/offline';
-import FilmNotFound from '../film-notfound/film-notfound';
+import FilmNotfound from '../film-notfound/film-notfound';
 import SpinLoad from '../spin-load/spin-load';
 
 import './movies-list.css';
@@ -78,7 +78,7 @@ export default class MoviesList extends Component {
         <SearchPanel searchMovie={this.searchMovie} />
         <Offline />
         {isLoading ? <SpinLoad /> : null}
-        {dataMovies.length === 0 && filmNotFound ? <FilmNotFound /> : null}
+        {dataMovies.length === 0 && filmNotFound ? <FilmNotfound /> : null}
         <div>
           <ul className="movies-list">
             {dataMovies.map((movie) => {

@@ -2,13 +2,13 @@ import { Component } from 'react';
 
 import ServiceApi from '../../service/service';
 import GuestSession from '../../service/guest-session';
-import MyContext from '../context/context';
+import MyContext from '../Context/Context';
 import ToggleTab from '../toggle-tab/toggle-tab';
 import MoviesList from '../movies-list/movies-list';
 import RatedList from '../rated-list/rated-list';
 import ErrorIndicator from '../error/error';
 
-import './app.css';
+import './App.css';
 
 export default class App extends Component {
   constructor() {

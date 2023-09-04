@@ -33,16 +33,14 @@
   font-family: 'Inter';
   font-size: 20px;
   line-height: 28px;
-  font-weight: none;
   color: #000000;
 }
 
-.srate {
+.rate {
   width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
   height: 30px;
   border: 2px solid;
   border-radius: 50%;

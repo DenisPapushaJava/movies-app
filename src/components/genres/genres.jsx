@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import MyContext from '../context/context';
+import MyContext from '../Context/Context';
 
 export default class Genres extends Component {
   render() {
@@ -12,14 +12,13 @@ export default class Genres extends Component {
             let getItem = value.find((el) => el.id === item);
             return getItem?.name;
           });
-          let genres = genreNames.slice(0, 3).map((name, id) => {
+          return genreNames.slice(0, 3).map((name, id) => {
             return (
               <span key={id} className="genre">
                 {name}
               </span>
             );
           });
-          return genres;
         }}
       </MyContext.Consumer>
     );

@@ -11,9 +11,9 @@ export default class ItemList extends Component {
     const { id, title, dateRelease, description, poster, dataGenres, rating, countStars, sendRateStars } = this.props;
 
     const posterIMG = (poster) => {
-      const defoltImage = 'https://i.pinimg.com/564x/cd/32/a9/cd32a9d0db875091a9c9d3fe5fec55f8.jpg';
+      const defaultImage = 'https://i.pinimg.com/564x/cd/32/a9/cd32a9d0db875091a9c9d3fe5fec55f8.jpg';
       const posterImage = `https://image.tmdb.org/t/p/w500${poster}`;
-      return poster === null ? defoltImage : posterImage;
+      return poster === null ? defaultImage : posterImage;
     };
 
     const formatText = (description) => {
@@ -31,7 +31,7 @@ export default class ItemList extends Component {
     };
 
     const getColor = (rating) => {
-      let colorRating = 'srate ';
+      let colorRating = 'rate ';
       if (rating >= 7) return (colorRating += 'high');
       if (rating >= 5 && rating < 7) return (colorRating += 'medium');
       if (rating >= 3 && rating < 5) return (colorRating += 'low');
