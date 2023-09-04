@@ -1,51 +1,33 @@
-* {
-  box-sizing: border-box;
-}
-
-.wrapper {
-  width: 100%;
+.movie-app {
+  max-width: 1010px;
+  height: 100%;
+  background: #ffffff;
+  margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
+  padding: 0px 36px;
+  padding-top: 13px;
+  padding-bottom: 17px;
 }
 
-.main {
-  width: 940px;
-  display: grid;
-  grid-template-columns: 451px 451px;
-  column-gap: 30px;
-  row-gap: 30px;
+.example {
+  margin: 30% 0;
+  align-self: center;
+  background: inherit;
 }
 
-.ant-layout-content {
-  padding: 0 15px 0 15px;
+.search-panel {
+  margin-top: 40px;
 }
 
-.input-wrapper {
-  width: 937px;
-  padding-bottom: 15px;
+.input-search {
+  height: 40px;
 }
 
-@media screen and (max-width: 1028px) {
-  .wrapper {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-x: hidden;
-  }
-
-  .main {
-    width: 388px;
-    display: grid;
-    grid-template-columns: 388px;
-    column-gap: 30px;
-    row-gap: 30px;
-  }
-
-  .input-wrapper {
-    width: 388px;
-    padding-bottom: 15px;
-  }
+.pagination {
+  padding-top: 37px;
+  display: flex;
+  justify-content: center;
 }

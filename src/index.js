@@ -1,10 +1,9 @@
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-import App from './components/App';
+import App from './components/app/app';
+import './index.css';
 
-const container = document.getElementById('root');
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const root = createRoot(container);
-
-// eslint-disable-next-line react/react-in-jsx-scope
 root.render(<App />);
