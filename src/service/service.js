@@ -6,7 +6,7 @@ export default class ServiceApi extends Component {
     this.state = {
       url: new URL('https://api.themoviedb.org'),
       mainURL: 'https://api.themoviedb.org/3',
-      apiKey: '71a10ef540506d7e0dfa55f2683f8514',
+      apiKey: '269a8d1b1a32cd3c0414c8b32a98ede8',
     };
   }
   async getAllMovies(movieName) {
