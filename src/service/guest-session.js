@@ -31,7 +31,7 @@ export default class GuestSession extends Component {
       const sessionJson = result.json();
       return await sessionJson;
     } catch (e) {
-      throw new Error('Ne poluchil tvoi guest session');
+      throw new Error('Error');
     }
   }
   async postRateStars(token, movieId, countStars) {
@@ -50,7 +50,7 @@ export default class GuestSession extends Component {
       if (!result.ok) throw new Error(`Failed to Fetch: ${url} Description: ${result.statusText}`);
       return await result;
     } catch (e) {
-      throw new Error('Ne otpravlauca stars');
+      throw new Error('Error grade');
     }
   }
 }
