@@ -1,0 +1,10 @@
+.movies-list {
+  display: flex;
+  width: 1010px;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 35px;
+  background-color: inherit;
+  padding-top: 32px;
+}
