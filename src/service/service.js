@@ -18,7 +18,7 @@ export default class ServiceApi extends Component {
       if (!result.ok) throw new Error(`Failed to Fetch: ${url} Description: ${result.statusText}`);
       return await result.json();
     } catch (e) {
-      throw new Error('Ne otveta ne priveta at servera');
+      throw new Error('Some error has occurred');
     }
   }
   async getPageMovies(movieName, page) {
@@ -31,7 +31,7 @@ export default class ServiceApi extends Component {
       if (!result.ok) throw new Error(`Failed to Fetch: ${url} Description: ${result.statusText}`);
       return await result.json();
     } catch (e) {
-      throw new Error('Server ne rabotaet');
+      throw new Error('Error Server');
     }
   }
   async getGenres() {
@@ -44,7 +44,7 @@ export default class ServiceApi extends Component {
       }
       return await result.json();
     } catch (e) {
-      throw new Error('Failed get genres');
+      throw new Error('Genres Error');
     }
   }
 }
