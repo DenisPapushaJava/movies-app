@@ -3,8 +3,8 @@ import { Component } from 'react';
 import { debounce } from 'lodash';
 
 export default class SearchPanel extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       query: '',
     };

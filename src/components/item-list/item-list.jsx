@@ -11,7 +11,8 @@ export default class ItemList extends Component {
     const { id, title, dateRelease, description, poster, dataGenres, rating, countStars, sendRateStars } = this.props;
 
     const posterIMG = (poster) => {
-      const defaultImage = 'https://i.pinimg.com/564x/cd/32/a9/cd32a9d0db875091a9c9d3fe5fec55f8.jpg';
+      const defaultImage =
+        'https://thumbs.dreamstime.com/z/%D0%B0%D1%84%D0%B8%D1%88%D0%B0-%D0%BA%D0%B8%D0%BD%D0%BE-%D0%BE%D1%81%D0%B2%D0%B5%D1%89%D0%B0%D0%B5%D1%82-%D0%B7%D0%B0%D0%BD%D0%B0%D0%B2%D0%B5%D1%81-%D1%84%D0%B8-%D1%8C%D0%BC%D0%B0-%D0%BA%D0%B0%D0%BC%D0%B5%D1%80%D1%8B-85846351.jpg?w=992';
       const posterImage = `https://image.tmdb.org/t/p/w500${poster}`;
       return poster === null ? defaultImage : posterImage;
     };
@@ -31,11 +32,11 @@ export default class ItemList extends Component {
     };
 
     const getColor = (rating) => {
-      let colorRating = 'rate ';
-      if (rating >= 7) return (colorRating += 'high');
-      if (rating >= 5 && rating < 7) return (colorRating += 'medium');
-      if (rating >= 3 && rating < 5) return (colorRating += 'low');
-      if (rating >= 0 && rating < 3) return (colorRating += 'none');
+      let colorRating = 'srate ';
+      if (rating >= 7) return colorRating + 'high';
+      if (rating >= 5 && rating < 7) return colorRating + 'medium';
+      if (rating >= 3 && rating < 5) return colorRating + 'low';
+      if (rating >= 0 && rating < 3) return colorRating + 'none';
     };
 
     const getStars = (countStars) => {

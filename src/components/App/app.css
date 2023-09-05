@@ -7,9 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 36px;
-  padding-top: 13px;
-  padding-bottom: 17px;
+  padding: 13px 36px 17px;
 }
 
 .example {

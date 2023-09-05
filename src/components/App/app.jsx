@@ -8,11 +8,11 @@ import MoviesList from '../movies-list/movies-list';
 import RatedList from '../rated-list/rated-list';
 import ErrorIndicator from '../error/error';
 
-import './App.css';
+import './app.css';
 
 export default class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       pageTab: 'search',
       genres: [],
@@ -30,9 +30,6 @@ export default class App extends Component {
   }
 
   onError = (e) => {
-    console.log('I AM ERROR!');
-    console.log(e);
-    console.log(e.message);
     this.setState({
       error: true,
       errorMessage: e.message,

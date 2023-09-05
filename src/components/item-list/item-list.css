@@ -10,16 +10,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 12px;
-  padding-left: 20px;
-  padding-right: 9px;
-  padding-bottom: 2px;
+  padding: 12px 9px 2px 20px;
   background: #ffffff;
 }
 
 .picture {
   width: 183px;
-  height: 281px;
   height: 100%;
 }
 
@@ -36,8 +32,8 @@
   color: #000000;
 }
 
-.rate {
-  width: 20%;
+.srate {
+  width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,50 +1,42 @@
 import { Component } from 'react';
 
 export default class ServiceApi extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       url: new URL('https://api.themoviedb.org'),
       mainURL: 'https://api.themoviedb.org/3',
       apiKey: '269a8d1b1a32cd3c0414c8b32a98ede8',
     };
   }
-  async getAllMovies(movieName) {
-    let url = new URL('3/search/movie', this.state.url);
+
+  async fetchData(path, queryParams = {}) {
+    const url = new URL(path, this.state.url);
     url.searchParams.set('api_key', this.state.apiKey);
-    url.searchParams.set('query', movieName);
-    try {
-      const result = await fetch(url);
-      if (!result.ok) throw new Error(`Failed to Fetch: ${url} Description: ${result.statusText}`);
-      return await result.json();
-    } catch (e) {
-      throw new Error('Some error has occurred');
+    for (const [key, value] of Object.entries(queryParams)) {
+      url.searchParams.set(key, value);
     }
-  }
-  async getPageMovies(movieName, page) {
-    let url = new URL('3/search/movie', this.state.url);
-    url.searchParams.set('api_key', this.state.apiKey);
-    url.searchParams.set('query', movieName);
-    url.searchParams.set('page', page);
-    try {
-      const result = await fetch(url);
-      if (!result.ok) throw new Error(`Failed to Fetch: ${url} Description: ${result.statusText}`);
-      return await result.json();
-    } catch (e) {
-      throw new Error('Error Server');
-    }
-  }
-  async getGenres() {
-    let url = new URL('3/genre/movie/list', this.state.url);
-    url.searchParams.set('api_key', this.state.apiKey);
+
     try {
       const result = await fetch(url);
       if (!result.ok) {
-        throw new Error('Failed to Fetch');
+        throw new Error(`Fetch failed for ${url}: ${result.statusText}`);
       }
       return await result.json();
     } catch (e) {
-      throw new Error('Genres Error');
+      throw new Error(`Fetch error: ${e.message}`);
     }
+  }
+
+  async getAllMovies(movieName) {
+    return this.fetchData('3/search/movie', { query: movieName });
+  }
+
+  async getPageMovies(movieName, page) {
+    return this.fetchData('3/search/movie', { query: movieName, page });
+  }
+
+  async getGenres() {
+    return this.fetchData('3/genre/movie/list');
   }
 }
