@@ -1,8 +1,8 @@
 import { Component } from 'react';
 
 export default class GuestSession extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       url: new URL('https://api.themoviedb.org'),
       apiKey: '269a8d1b1a32cd3c0414c8b32a98ede8',

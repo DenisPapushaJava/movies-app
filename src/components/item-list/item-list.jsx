@@ -32,7 +32,7 @@ export default class ItemList extends Component {
     };
 
     const getColor = (rating) => {
-      let colorRating = 'srate ';
+      let colorRating = 'rates ';
       if (rating >= 7) return colorRating + 'high';
       if (rating >= 5 && rating < 7) return colorRating + 'medium';
       if (rating >= 3 && rating < 5) return colorRating + 'low';

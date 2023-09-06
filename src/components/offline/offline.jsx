@@ -13,8 +13,8 @@ export default class Offline extends Component {
         }}
       >
         <Alert
-          message="No internet connection"
-          description="Check internet connection or use vpn"
+          message="Internet disconnect"
+          description="Check internet"
           type="error"
           closable
           showIcon

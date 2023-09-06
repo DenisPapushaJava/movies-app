@@ -1,17 +1,15 @@
-import { Component } from 'react';
-
+import React, { Component } from 'react';
 import SearchPanel from '../search-panel/search-panel';
 import ItemList from '../item-list/item-list';
 import MyPagination from '../pagination/my-pagination';
 import Offline from '../offline/offline';
 import FilmNotfound from '../film-notfound/film-notfound';
 import SpinLoad from '../spin-load/spin-load';
-
 import './movies-list.css';
 
 export default class MoviesList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       queryMovie: '',
       dataMovies: [],
@@ -23,7 +21,11 @@ export default class MoviesList extends Component {
   }
 
   searchMovie = (movieName) => {
-    this.setState({ isLoading: true });
+    this.setState((prevState) => ({
+      ...prevState,
+      isLoading: true,
+    }));
+
     if (movieName.trim() !== '') {
       this.props
         .getAllMovies(movieName)
@@ -52,7 +54,10 @@ export default class MoviesList extends Component {
   };
 
   searchPageMovie = (movieName, numPage) => {
-    this.setState({ isLoading: true });
+    this.setState((prevState) => ({
+      ...prevState,
+      isLoading: true,
+    }));
     this.props
       .getPageMovies(`${movieName}`, `${numPage}`)
       .then((res) => {
@@ -71,35 +76,41 @@ export default class MoviesList extends Component {
   };
 
   render() {
-    const { dataMovies, totalPage, page, queryMovie, filmNotFound, isLoading } = this.state;
+    const {
+      dataMovies,
+      totalPage,
+      page,
+      queryMovie,
+      filmNotFound,
+      isLoading,
+    } = this.state;
     const { pageTab, sendRateStars } = this.props;
+
     return (
       <div className="box">
         <SearchPanel searchMovie={this.searchMovie} />
         <Offline />
-        {isLoading ? <SpinLoad /> : null}
-        {dataMovies.length === 0 && filmNotFound ? <FilmNotfound /> : null}
+        {isLoading && <SpinLoad />}
+        {dataMovies.length === 0 && filmNotFound && <FilmNotfound />}
         <div>
           <ul className="movies-list">
-            {dataMovies.map((movie) => {
-              return (
-                <ItemList
-                  poster={movie.poster_path}
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.title}
-                  dateRelease={movie.release_date}
-                  description={movie.overview}
-                  dataGenres={movie.genre_ids}
-                  rating={movie.vote_average}
-                  countStars={movie.rating}
-                  sendRateStars={sendRateStars}
-                />
-              );
-            })}
+            {dataMovies.map((movie) => (
+              <ItemList
+                poster={movie.poster_path}
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                dateRelease={movie.release_date}
+                description={movie.overview}
+                dataGenres={movie.genre_ids}
+                rating={movie.vote_average}
+                countStars={movie.rating}
+                sendRateStars={sendRateStars}
+              />
+            ))}
           </ul>
         </div>
-        {dataMovies.length > 0 ? (
+        {dataMovies.length > 0 && (
           <MyPagination
             pageTab={pageTab}
             searchPageMovie={this.searchPageMovie}
@@ -107,7 +118,7 @@ export default class MoviesList extends Component {
             totalPage={totalPage}
             queryMovie={queryMovie}
           />
-        ) : null}
+        )}
       </div>
     );
   }
