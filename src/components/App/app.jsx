@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 import ServiceApi from '../../service/service';
 import GuestSession from '../../service/guest-session';
-import MyContext from '../Context/Context';
+import MyContext from '../context/Context';
 import ToggleTab from '../toggle-tab/toggle-tab';
 import MoviesList from '../movies-list/movies-list';
 import RatedList from '../rated-list/rated-list';

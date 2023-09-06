@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import MyContext from '../Context/Context';
+import MyContext from '../context/Context';
 
 export default class Genres extends Component {
   render() {
